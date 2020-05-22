@@ -7,14 +7,14 @@ class MyClient(discord.Client):
     async def on_ready(self):
         # game = '« X-Plane »'  # only set if you want bot playing a game
         # await client.change_presence(activity=discord.Activity(name=game, status=discord.Status.« online, idle, dnd »))   # sets custom status and game
-        print(+str+(self.user.name)+ +str(self.user.id)+ ' logged in')
+        print('logged in')
 
     async def on_message(self, message):
         if message.author.id == self.user.id:
             return
         
         if message.content.startswith('« your command »'):
-            await message.channel.send(+str(author.mention)+ '« your message content »') # this will mention the author of the command message, remove +str(author.mention)+ to make it not mention the author.
+            await message.channel.send('« your message content »'.format(message)) # to mention the author, add '{0.author.mention}'
             return
 
     #welcome message
@@ -24,4 +24,4 @@ class MyClient(discord.Client):
         return
 
 client = MyClient()
-client.run('« bot token') # found in the 'Bot' section in your Discord Applicaton.
+client.run('« bot token »') # found in the 'Bot' section in your Discord Applicaton.

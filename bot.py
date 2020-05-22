@@ -6,7 +6,7 @@ import discord
 class MyClient(discord.Client):
     async def on_ready(self):
         # game = '« X-Plane »'  # only set if you want bot playing a game
-        # await client.change_presence(activity=discord.Activity(name=game, status=discord.Status.« online, idle, dnd »))   # sets custom status and game
+        # await client.change_presence(activity=discord.Activity(name=game, type=0, status=discord.Status.« online, idle, dnd »))   # sets custom status and game
         print('logged in')
 
     async def on_message(self, message):

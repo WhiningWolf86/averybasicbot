@@ -24,4 +24,4 @@ class MyClient(discord.Client):
         return
 
 client = MyClient()
-client.run('« bot token »') # found in the 'Bot' section in your Discord Applicaton.
+client.run('« bot token »')

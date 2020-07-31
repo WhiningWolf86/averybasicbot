@@ -1,27 +1,37 @@
-#any text placed within «» is place holder, it is ment to be replaced with your own information «» removed. 
-#This does not mean you can't change anything else within the script.
-
 import discord
+import os
+envar = "bot_token"
+
+print(f'checking for {envar}')
+if envar in os.environ:
+    print(f'{envar} exists')
+else:
+    envar_val = input('Please imput bot token:\n')
+    os.environ[envar] = envar_val
+    print('Temporary variable added. Please add the token to your environment variables before starting next time.')
+    input('Read, and then press Enter to continue...')
+
+print(f'signing in with token {envar}:')
 
 class MyClient(discord.Client):
     async def on_ready(self):
-        # game = '« X-Plane »'  # only set if you want bot playing a game
-        # await client.change_presence(activity=discord.Activity(name=game, type=0, status=discord.Status.« online, idle, dnd »))   # sets custom status and game
-        print('logged in')
+        game = 'hah'
+        await client.change_presence(activity=discord.Activity(name=game, type=0, status=discord.Status.online))   # sets custom status and game
+        print('signed in')
 
     async def on_message(self, message):
         if message.author.id == self.user.id:
             return
-        
-        if message.content.startswith('« your command »'):
-            await message.channel.send('« your message content »'.format(message)) # to mention the author, add '{0.author.mention}'
+        if message.content.startswith('s!hullo'):
+            await message.channel.send('hi') # to mention the author, add '{0.author.mention}'
             return
-
-    #welcome message
+        if message.content.startswith('s!service'):
+            await message.channel.send(f"The user is {os.environ['USER']}\nThe shell is {os.environ['SHELL']}")
+    
     async def on_member_join(self, member: discord.Member):
-        channel = client.get_channel(« welcome channel ID») # you get channel IDs by right clicking the channel name 
-        await channel.send('Hello ' +str(member.mention)+ ' Welcome!') # mentions the new user in specified channel in line above
+        channel = client.get_channel()
+        await channel.send('Hello ' +str(member.mention)+ ' Welcome!')
         return
 
 client = MyClient()
-client.run('« bot token »')
+client.run(os.environ['bot_token'])

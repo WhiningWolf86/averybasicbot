@@ -30,7 +30,7 @@ class MyClient(discord.Client):
     
     async def on_member_join(self, member: discord.Member):
         channel = client.get_channel()
-        await channel.send('Hello ' +str(member.mention)+ ' Welcome!')
+        await channel.send('Hello ' +str(member.mention)+ ', Welcome!')
         return
 
 client = MyClient()

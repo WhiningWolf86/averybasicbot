@@ -34,4 +34,4 @@ class MyClient(discord.Client):
         return
 
 client = MyClient()
-client.run(os.environ['bot_token'])
+client.run(envar)

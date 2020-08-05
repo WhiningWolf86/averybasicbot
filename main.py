@@ -26,7 +26,7 @@ async def on_ready():
     print('status set')
 
 
-@bot.event #  I have no idea if this works, I haven't been able to test it
+@bot.event  # I have no idea if this works, I haven't been able to test it
 async def on_member_join(ctx, member: discord.Member):
     channel = bot.get_channel(576901270405775369)
     await ctx.send('Hello ' + str(member.mention) + ', Welcome!')

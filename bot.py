@@ -4,7 +4,8 @@ envar = "bot_token"
 
 print(f'checking for {envar}')
 if envar in os.environ:
-    print(f'{envar} exists')
+	print(f'{envar} exists')
+	envar_val = os.environ(envar)
 else:
     envar_val = input('Please imput bot token:\n')
     os.environ[envar] = envar_val
@@ -34,4 +35,4 @@ class MyClient(discord.Client):
         return
 
 client = MyClient()
-client.run(envar)
+client.run(envar_val)

@@ -1,3 +1,5 @@
 .vscode
 .json
+.idea
 __pycache__
+.iml

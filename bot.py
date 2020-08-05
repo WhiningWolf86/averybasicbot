@@ -1,14 +1,14 @@
 import discord
 import os
-envar = "bot_token"
+envar = "bot_token" # chanve "bot_token" to the name of your enviroment variable
 
-print(f'checking for {envar}')
+print(f'checking for {envar}') # checking if you have token stored an enviroment variable 
 if envar in os.environ:
 	print(f'{envar} exists')
 	envar_val = os.environ[envar]
 else:
-    envar_val = input('Please imput bot token:\n')
-    os.environ[envar] = envar_val
+    envar_val = input('Please imput bot token:\n') 
+    os.environ[envar] = envar_val # temporarily sets token as envar_val
     print('Temporary variable added. Please add the token to your environment variables before starting next time.')
     input('Read, and then press Enter to continue...')
 

@@ -1,8 +1,14 @@
 import discord
 from discord.ext import commands
+import time
 import os
 
+
 token = 'bot_token'  # name this to your environment variable
+owner = 'bot_owner'
+welcome_channel = 576901270405775369
+
+
 print(f'checking for {token}')
 if token in os.environ:
     print(f'token {token} exists.')
@@ -12,6 +18,12 @@ else:
     os.environ[token] = token_val
     print('temporarily added token, please add it to your environment variables')
     input('Read, and press Enter.')
+
+if owner in os.environ:
+    owner_val = os.environ[owner]
+else:
+    print("Add your Discord user ID in environment variables as 'bot_owner'\n"
+          "or remove this IF-ELSE and directly change the 'owner_val' variable to your ID.")
 
 print('signing in')
 
@@ -27,9 +39,10 @@ async def on_ready():
 
 
 @bot.event  # I have no idea if this works, I haven't been able to test it
-async def on_member_join(ctx, member: discord.Member):
-    channel = bot.get_channel(576901270405775369)
-    await ctx.send('Hello ' + str(member.mention) + ', Welcome!')
+async def on_member_join():
+    channel = bot.get_channel(welcome_channel)
+    time.sleep(1)
+    await channel.send('Welcome!')
 
 
 @bot.command()
@@ -39,9 +52,12 @@ async def test(ctx):
 
 @bot.command()
 async def invite(ctx):
-    #  await bot.say('\U0001f44d')
-    #  await bot.whisper(discord.utils.oauth_url(bot.user.id))
     await ctx.send(discord.utils.oauth_url(bot.user.id))
+
+
+@bot.command(pass_context=True, no_pm=True)
+async def avatar(ctx, member: discord.Member):
+    await ctx.send("{}".format(member.avatar_url))
 
 
 bot.run(token_val)

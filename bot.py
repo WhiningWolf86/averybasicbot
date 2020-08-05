@@ -1,6 +1,6 @@
 import discord
 import os
-envar = "bot_token" # chanve "bot_token" to the name of your enviroment variable
+envar = "bot_token" # change "bot_token" to the name of your enviroment variable
 
 print(f'checking for {envar}') # checking if you have token stored an enviroment variable 
 if envar in os.environ:

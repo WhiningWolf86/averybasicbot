@@ -11,15 +11,17 @@ welcome_channel = 576901270405775369
 
 print(f'checking for {token}')
 if token in os.environ:
+    # checks if token has a value
     print(f'token {token} exists.')
     token_val = os.environ[token]
+    # sets token_val to the value of {token}
 else:
     token_val = input('Please input bot token:\n')
-    os.environ[token] = token_val
+    os.environ[token] = token_val  # sets temporary token value
     print('temporarily added token, please add it to your environment variables')
     input('Read, and press Enter.')
 
-if owner in os.environ:
+if owner in os.environ:  # similar to the token check, this finds the value of {owner}
     owner_val = os.environ[owner]
 else:
     print("Add your Discord user ID in environment variables as 'bot_owner'\n"
@@ -38,11 +40,11 @@ async def on_ready():
     print('status set')
 
 
-@bot.event  # I have no idea if this works, I haven't been able to test it
-async def on_member_join():
+@bot.event  # tested to work
+async def on_member_join(member):
     channel = bot.get_channel(welcome_channel)
     time.sleep(1)
-    await channel.send('Welcome!')
+    await channel.send('Welcome {}!'.format(member.mention))
 
 
 @bot.command()

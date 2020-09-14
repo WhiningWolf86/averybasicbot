@@ -1,9 +1,13 @@
+
+#  Copyright (c) 2020 Avery Murray. This project and file is licensed under the GNU General Public License v3.0.
+
 import discord
 from discord.ext import commands
 import time
 import os
 
-
+# noinspection HardcodedPassword
+# because it isn't, thanks IDEA
 token = 'bot_token'  # name this to your environment variable
 owner = 'bot_owner'
 welcome_channel = 576901270405775369
@@ -21,13 +25,16 @@ else:
     print('temporarily added token, please add it to your environment variables')
     input('Read, and press Enter.')
 
+
 if owner in os.environ:  # similar to the token check, this finds the value of {owner}
     owner_val = os.environ[owner]
 else:
     print("Add your Discord user ID in environment variables as 'bot_owner'\n"
           "or remove this IF-ELSE and directly change the 'owner_val' variable to your ID.")
 
+
 print('signing in')
+
 
 bot = commands.Bot(command_prefix='s!')
 
